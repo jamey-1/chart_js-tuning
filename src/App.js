@@ -163,7 +163,8 @@ const labelTooltip = (tooltipItems) => {
   const label = tooltipItems.dataset.label;
   let value = tooltipItems.formattedValue;
   if (label.toLowerCase().indexOf("temperature") > -1) {
-    value = value + "C";
+    const fahDegree = ((value * 1.8) + 32).toFixed(2);
+    value = value + "°C" + " (" + fahDegree + "°F)";
   } else if (label.toLowerCase().indexOf("moisture") > -1) {
     value = value + "%";
   }
@@ -201,12 +202,12 @@ export const options = {
       max: 50,
       ticks: {
         callback: function(value, index, values) {
-          return `${value}C`;
+          return `${value}°C`;
         }
       },
       title: {
         display: true,
-        text: 'Temperature in C',
+        text: 'Temperature in °C',
       },
     },
     y1: {
